@@ -94,6 +94,44 @@
                                     <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d, y') }}</span>
                                 </div>
                             </div>
+                            <div class="flex items-center text-gray-400 text-sm mt-7">
+
+                                <input type="hidden" value="{{ $movie['id'] }}" name="movie_id" id="movie_id">
+                                <input type="hidden" value="{{ $movie['title'] }}" name="title"
+                                    id="title_{{ $movie['id'] }}">
+                                <input type="hidden" value="{{ $movie['backdrop_path'] }}" name="backdrop_path"
+                                    id="backdrop_path_{{ $movie['id'] }}">
+                                <input type="hidden" value="{{ $movie['poster_path'] }}" name="poster_path"
+                                    id="poster_path_{{ $movie['id'] }}">
+                                <input type="hidden" value="{{ $movie['overview'] }}" name="overview"
+                                    id="overview_{{ $movie['id'] }}">
+                                <input type="hidden" value="{{ $movie['release_date'] }}" name="release_date"
+                                    id="release_date_{{ $movie['id'] }}">
+                                <input type="hidden" value="{{ $movie['vote_average'] }}" name="vote_average"
+                                    id="vote_average_{{ $movie['id'] }}">
+                                @if (Auth::check())
+                                    @if ($helper->checkMoviesList($movie['id']) == true)
+                                        <span>
+                                            <button
+                                                class="py-2 px-3 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                                disabled>
+                                                Added
+                                            </button>
+                                        </span>
+                                    @else
+                                        <span id="addToList_{{ $movie['id'] }}">
+                                            <button onclick="addToList({{ $movie['id'] }})"
+                                                id="addToListButton_{{ $movie['id'] }}"
+                                                class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300  rounded-lg py-2 px-3 text-xs font-medium text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">
+                                                Added to list
+                                            </button>
+                                        </span>
+                                    @endif
+                                @endif
+
+
+
+                            </div>
                         </div>
                     @endif
                 @endforeach

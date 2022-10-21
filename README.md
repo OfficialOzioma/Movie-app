@@ -20,5 +20,8 @@ API Application by pulling TMDB data with Laravel.
 
 ## Screenshots
 
+![Home Page](https://user-images.githubusercontent.com/28990981/197184544-fb3ece15-5f3a-4b51-8129-8cf0a4220600.png)
+![Dashboard](https://user-images.githubusercontent.com/28990981/197184621-345efceb-fd6f-4e7d-b656-14c01233fcb4.png)
+![Actors_page](https://user-images.githubusercontent.com/28990981/197184640-a61ea108-84e7-4331-bdbc-3956889f27e3.png)
 
 ## credits

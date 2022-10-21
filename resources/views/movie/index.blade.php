@@ -8,92 +8,24 @@
             <div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8 gap-3">
 
                 @foreach ($popularMovies as $movie)
-                    @if ($loop->index < 16)
-                        <div class="mt-8 relative">
-                            <a href="{{ route('movie.show', $movie['id']) }}">
-                                <img class="hover:opacity-50 transition ease-in-out duration-150 rounded-lg"
-                                    src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['backdrop_path'] }}" alt="">
-                            </a>
-                            <span
-                                class="ml-3 mt-3 border-2 border-yellow-500 rounded-full w-8 h-8 text-center absolute top-0 left-0 text-white font-semibold text-sm flex justify-center items-center">
-                                {{ $movie['vote_average'] * 10 }} <small class="text-xs">%</small>
-                            </span>
-                            <div class="mt-2">
-                                <a href="{{ route('movie.show', $movie['id']) }}"
-                                    class="text-md pt-4 text-white font-semibond hover:text-yellow-500">{{ $movie['title'] }}</a>
-                                <div class="flex items-center text-gray-400 text-sm">
-                                    <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d, y') }}</span>
-                                </div>
-
-                                <div class="flex items-center text-gray-400 text-sm mt-7">
-
-                                    <input type="hidden" value="{{ $movie['id'] }}" name="movie_id" id="movie_id">
-                                    <input type="hidden" value="{{ $movie['title'] }}" name="title"
-                                        id="title_{{ $movie['id'] }}">
-                                    <input type="hidden" value="{{ $movie['backdrop_path'] }}" name="backdrop_path"
-                                        id="backdrop_path_{{ $movie['id'] }}">
-                                    <input type="hidden" value="{{ $movie['poster_path'] }}" name="poster_path"
-                                        id="poster_path_{{ $movie['id'] }}">
-                                    <input type="hidden" value="{{ $movie['overview'] }}" name="overview"
-                                        id="overview_{{ $movie['id'] }}">
-                                    <input type="hidden" value="{{ $movie['release_date'] }}" name="release_date"
-                                        id="release_date_{{ $movie['id'] }}">
-                                    <input type="hidden" value="{{ $movie['vote_average'] }}" name="vote_average"
-                                        id="vote_average_{{ $movie['id'] }}">
-                                    @if (Auth::check())
-                                        @if ($helper->checkMoviesList($movie['id']) == true)
-                                            <span>
-                                                <button
-                                                    class="py-2 px-3 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                                    disabled>
-                                                    Added
-                                                </button>
-                                            </span>
-                                        @else
-                                            <span id="addToList_{{ $movie['id'] }}">
-                                                <button onclick="addToList({{ $movie['id'] }})"
-                                                    id="addToListButton_{{ $movie['id'] }}"
-                                                    class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300  rounded-lg py-2 px-3 text-xs font-medium text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">
-                                                    Added to list
-                                                </button>
-                                            </span>
-                                        @endif
-                                    @endif
-
-
-
-                                </div>
+                    {{-- @dd($loop) --}}
+                    {{-- @if ($loop->index < 20) --}}
+                    <div class="mt-8 relative">
+                        <a href="{{ route('movie.show', $movie['id']) }}">
+                            <img class="hover:opacity-50 transition ease-in-out duration-150 rounded-lg"
+                                src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['backdrop_path'] }}" alt="">
+                        </a>
+                        <span
+                            class="ml-3 mt-3 border-2 border-yellow-500 rounded-full w-8 h-8 text-center absolute top-0 left-0 text-white font-semibold text-sm flex justify-center items-center">
+                            {{ $movie['vote_average'] * 10 }} <small class="text-xs">%</small>
+                        </span>
+                        <div class="mt-2">
+                            <a href="{{ route('movie.show', $movie['id']) }}"
+                                class="text-md pt-4 text-white font-semibond hover:text-yellow-500">{{ $movie['title'] }}</a>
+                            <div class="flex items-center text-gray-400 text-sm">
+                                <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d, y') }}</span>
                             </div>
-                        </div>
-                    @endif
-                @endforeach
 
-            </div>
-        </div>
-
-        <div class="popular-movie">
-            <h2 class="capitalize text-white text-lg font-semibold">Upcoming Movie</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8 gap-3">
-
-                @foreach ($upcomingMovies as $movie)
-                    @if ($loop->index < 16)
-                        <div class="mt-8 relative">
-                            <a href="{{ route('movie.show', $movie['id']) }}">
-                                <img class="hover:opacity-50 transition ease-in-out duration-150 rounded-lg"
-                                    src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['backdrop_path'] }}"
-                                    alt="">
-                            </a>
-                            <span
-                                class="ml-3 mt-3 border-2 border-yellow-500 rounded-full w-8 h-8 text-center absolute top-0 left-0 text-white font-semibold text-sm flex justify-center items-center">
-                                {{ $movie['vote_average'] * 10 }} <small class="text-xs">%</small>
-                            </span>
-                            <div class="mt-2">
-                                <a href="{{ route('movie.show', $movie['id']) }}"
-                                    class="text-md pt-4 text-white font-semibond hover:text-yellow-500">{{ $movie['title'] }}</a>
-                                <div class="flex items-center text-gray-400 text-sm">
-                                    <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d, y') }}</span>
-                                </div>
-                            </div>
                             <div class="flex items-center text-gray-400 text-sm mt-7">
 
                                 <input type="hidden" value="{{ $movie['id'] }}" name="movie_id" id="movie_id">
@@ -133,7 +65,75 @@
 
                             </div>
                         </div>
-                    @endif
+                    </div>
+                    {{-- @endif --}}
+                @endforeach
+
+            </div>
+        </div>
+
+        <div class="popular-movie">
+            <h2 class="capitalize text-white text-lg font-semibold">Upcoming Movie</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8 gap-3">
+
+                @foreach ($upcomingMovies as $movie)
+                    {{-- @if ($loop->index < 16) --}}
+                    <div class="mt-8 relative">
+                        <a href="{{ route('movie.show', $movie['id']) }}">
+                            <img class="hover:opacity-50 transition ease-in-out duration-150 rounded-lg"
+                                src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['backdrop_path'] }}" alt="">
+                        </a>
+                        <span
+                            class="ml-3 mt-3 border-2 border-yellow-500 rounded-full w-8 h-8 text-center absolute top-0 left-0 text-white font-semibold text-sm flex justify-center items-center">
+                            {{ $movie['vote_average'] * 10 }} <small class="text-xs">%</small>
+                        </span>
+                        <div class="mt-2">
+                            <a href="{{ route('movie.show', $movie['id']) }}"
+                                class="text-md pt-4 text-white font-semibond hover:text-yellow-500">{{ $movie['title'] }}</a>
+                            <div class="flex items-center text-gray-400 text-sm">
+                                <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d, y') }}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-gray-400 text-sm mt-7">
+
+                            <input type="hidden" value="{{ $movie['id'] }}" name="movie_id" id="movie_id">
+                            <input type="hidden" value="{{ $movie['title'] }}" name="title"
+                                id="title_{{ $movie['id'] }}">
+                            <input type="hidden" value="{{ $movie['backdrop_path'] }}" name="backdrop_path"
+                                id="backdrop_path_{{ $movie['id'] }}">
+                            <input type="hidden" value="{{ $movie['poster_path'] }}" name="poster_path"
+                                id="poster_path_{{ $movie['id'] }}">
+                            <input type="hidden" value="{{ $movie['overview'] }}" name="overview"
+                                id="overview_{{ $movie['id'] }}">
+                            <input type="hidden" value="{{ $movie['release_date'] }}" name="release_date"
+                                id="release_date_{{ $movie['id'] }}">
+                            <input type="hidden" value="{{ $movie['vote_average'] }}" name="vote_average"
+                                id="vote_average_{{ $movie['id'] }}">
+                            @if (Auth::check())
+                                @if ($helper->checkMoviesList($movie['id']) == true)
+                                    <span>
+                                        <button
+                                            class="py-2 px-3 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                            disabled>
+                                            Added
+                                        </button>
+                                    </span>
+                                @else
+                                    <span id="addToList_{{ $movie['id'] }}">
+                                        <button onclick="addToList({{ $movie['id'] }})"
+                                            id="addToListButton_{{ $movie['id'] }}"
+                                            class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300  rounded-lg py-2 px-3 text-xs font-medium text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">
+                                            Added to list
+                                        </button>
+                                    </span>
+                                @endif
+                            @endif
+
+
+
+                        </div>
+                    </div>
+                    {{-- @endif --}}
                 @endforeach
 
             </div>

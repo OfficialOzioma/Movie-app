@@ -24,9 +24,11 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Cache::remember('movies', 30, function()  {
-            return $this->moviesServices->getMovieFromAPI();
-        });
+        // $movies = Cache::remember('movies', 30, function () {
+        //     return $this->moviesServices->getMovieFromAPI();
+        // });
+
+        $movies =  $this->moviesServices->getMovieFromAPI();
 
         return view('movie.index', [
             'popularMovies' => $movies['popularMovies'],
@@ -43,7 +45,7 @@ class MovieController extends Controller
      */
     public function show(int $id)
     {
-        $showMovies =  Cache::remember($id, 60, function() use ($id) {
+        $showMovies =  Cache::remember($id, 60, function () use ($id) {
             return $this->moviesServices->showMoviesDetails($id);
         });
 
@@ -52,6 +54,4 @@ class MovieController extends Controller
             'movieRecommendations' => $showMovies['movieRecommendations']
         ]);
     }
-
-
 }

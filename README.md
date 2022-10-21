@@ -1,6 +1,20 @@
 ## Movie App
 
-API Application by pulling TMDB data with Laravel.
+API Application by pulling TMDB data with Laravel. This project use APIs from <https://www.themoviedb.org/>.
+
+## Description  
+
+This movie App fetches data from TMDB API and displays it on the page. The user can See all availble movies, Actors and TV shows. The user can also view the details of the movie or TV show. The user can also add the movies to their movie list. The user can also view the movie list and remove the movie from the movie list.
+
+## Technologies
+
+- PHP  =< 7.4
+- Laravel  version 8
+- Javascript
+- Mysql Database
+- HTML 5
+- CSS 3
+- Tailwind CSS
 
 ### Installation
 

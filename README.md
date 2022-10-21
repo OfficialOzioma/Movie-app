@@ -24,6 +24,8 @@ This movie App fetches data from TMDB API and displays it on the page. The user 
 - Run `composer install` command on console screen.
 - Rename the .env.example file to .env.
 - Set up your database connection in the .env file.
+- If you have the API Token from TMDB, you can add it to the .env file.
+- For example `MOVIE_TOKEN=your_api_token`
 - Run `php artisan migrate` command on console screen.
 - Run `php artisan key:generate` command on console screen.
 - Run the `php artisan serve` command to run the project.

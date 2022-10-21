@@ -39,3 +39,5 @@ This movie App fetches data from TMDB API and displays it on the page. The user 
 ![Actors_page](https://user-images.githubusercontent.com/28990981/197184640-a61ea108-84e7-4331-bdbc-3956889f27e3.png)
 
 ## credits
+
+![tmdb](https://user-images.githubusercontent.com/28990981/197189531-81d2c6d0-98e6-459a-b9d7-21ae9b344d69.svg)
